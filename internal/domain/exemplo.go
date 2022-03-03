@@ -5,5 +5,6 @@ import (
 )
 
 type Exemplo struct {
-	ID null.Int `db:"id" json:"id"`
+	ID   null.Int    `db:"id" json:"id"`
+	Name null.String `db:"name" json:"name"`
 }

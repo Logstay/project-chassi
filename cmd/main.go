@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"flag"
+	"fmt"
 	"net/http"
 	"os"
 	"time"
@@ -11,21 +12,38 @@ import (
 	"github.com/go-kit/log/level"
 	"github.com/jmoiron/sqlx"
 	_ "github.com/lib/pq"
-	"github.com/logstay/project-church-service/config"
 	"github.com/logstay/project-church-service/internal/endpoint"
 	"github.com/logstay/project-church-service/internal/service"
 	trans "github.com/logstay/project-church-service/internal/transport/http"
 	"github.com/sirupsen/logrus"
+	"github.com/spf13/viper"
 )
 
-const (
-	banner = `             __               __           .__                         .__     
-_____________  ____    |__| ____   _____/  |_    ____ |  |__  __ _________   ____ |  |__  
-\____ \_  __ \/  _ \   |  |/ __ \_/ ___\   __\ _/ ___\|  |  \|  |  \_  __ \_/ ___\|  |  \ 
-|  |_> >  | \(  <_> )  |  \  ___/\  \___|  |   \  \___|   Y  \  |  /|  | \/\  \___|   Y  \
-|   __/|__|   \____/\__|  |\___  >\___  >__|    \___  >___|  /____/ |__|    \___  >___|  /
-|__|               \______|    \/     \/            \/     \/                   \/     \/ 
+// init config databse
+func init() {
 
+	viper.SetConfigName("database.yml")
+	viper.SetConfigType("yaml")
+	viper.AddConfigPath("./config/")
+	viper.AddConfigPath(".")
+	errViper := viper.ReadInConfig()
+	if errViper != nil {
+		panic(fmt.Errorf("Fatal error config file: %w \n", errViper))
+	}
+
+}
+
+const (
+	banner = ` 
+ ___       ________  ________  ________  _________  ________      ___    ___ 
+|\  \     |\   __  \|\   ____\|\   ____\|\___   ___\\   __  \    |\  \  /  /|
+\ \  \    \ \  \|\  \ \  \___|\ \  \___|\|___ \  \_\ \  \|\  \   \ \  \/  / /
+ \ \  \    \ \  \\\  \ \  \  __\ \_____  \   \ \  \ \ \   __  \   \ \    / / 
+  \ \  \____\ \  \\\  \ \  \|\  \|____|\  \   \ \  \ \ \  \ \  \   \/  /  /  
+   \ \_______\ \_______\ \_______\____\_\  \   \ \__\ \ \__\ \__\__/  / /    
+    \|_______|\|_______|\|_______|\_________\   \|__|  \|__|\|__|\___/ /     
+                                 \|_________|                   \|___|/      
+                                                                                                                                                   
 `
 )
 
@@ -52,7 +70,7 @@ func main() {
 	{
 		var err error
 		// Connect to the "ordersdb" database
-		db, err = sqlx.Open(config.GetDBType(), config.GetPostgresConnectionString())
+		db, err = sqlx.Open(viper.GetString("db_type"), viper.GetString("db_config"))
 		if err != nil {
 			os.Exit(-1)
 		}

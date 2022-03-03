@@ -5,10 +5,10 @@ import (
 	"errors"
 
 	"github.com/go-kit/log"
-	"github.com/go-kit/log/level"
 	"github.com/jmoiron/sqlx"
 	"github.com/logstay/project-church-service/internal/domain"
 	ExemploRepository "github.com/logstay/project-church-service/internal/repository/exemplo"
+	"gopkg.in/guregu/null.v4"
 )
 
 type Service interface {
@@ -30,16 +30,11 @@ func NewService(db *sqlx.DB, logger log.Logger) *service {
 }
 
 func (s *service) ObterExemplo(ctx context.Context) ([]domain.Exemplo, error) {
-	logger := log.With(s.logger, "metodo", "ObterExemplo")
 
-	Exemplo, err := s.ExemploRepository.ObterExemplo()
-	if err != nil {
-		level.Error(logger)
-
-		return []domain.Exemplo{}, errors.New("Não foi possível obter Exemplo")
-	}
-
-	return Exemplo, nil
+	return []domain.Exemplo{{
+		ID:   null.IntFrom(1),
+		Name: null.StringFrom("Service Up"),
+	}}, nil
 }
 
 func (s *service) AdicionarExemplo(ctx context.Context, Exemplo domain.Exemplo) error {
