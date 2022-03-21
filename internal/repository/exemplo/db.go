@@ -1,6 +1,8 @@
 package exemplo
 
 import (
+	"database/sql"
+
 	"github.com/jmoiron/sqlx"
 	"github.com/logstay/project-church-service/internal/domain"
 	rputils "github.com/logstay/project-church-service/internal/repository/rp_utils"
@@ -8,6 +10,8 @@ import (
 
 type ExemploRepository interface {
 	ObterExemplo() ([]domain.Exemplo, error)
+
+	ObterExemploPorID(id int64) (domain.Exemplo, error)
 
 	InserirExemplo(exemplo domain.Exemplo) (int64, error)
 }
@@ -20,6 +24,18 @@ func NewExemploRepository(db *sqlx.DB) ExemploRepository {
 	return &exemploRepository{
 		db: db,
 	}
+}
+
+func (ep *exemploRepository) ObterExemploPorID(id int64) (domain.Exemplo, error) {
+
+	Exemplo := domain.Exemplo{}
+
+	err := ep.db.Get(&Exemplo, "SELECT * FROM exemplo where id = $1", id)
+	if err == sql.ErrNoRows {
+		return domain.Exemplo{}, nil
+	}
+
+	return Exemplo, err
 }
 
 func (ep *exemploRepository) ObterExemplo() ([]domain.Exemplo, error) {

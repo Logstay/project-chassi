@@ -7,9 +7,9 @@ import (
 
 	"github.com/go-kit/kit/endpoint"
 	"github.com/go-kit/log"
-	"github.com/go-kit/log/level"
 	"github.com/logstay/project-church-service/internal/domain"
 	"github.com/logstay/project-church-service/internal/service"
+	"github.com/sirupsen/logrus"
 )
 
 func makeObterExemploEndpoint(s service.ServiceFactory, logger log.Logger) endpoint.Endpoint {
@@ -17,14 +17,17 @@ func makeObterExemploEndpoint(s service.ServiceFactory, logger log.Logger) endpo
 
 		resp, err := s.Exemplo().ObterExemplo(ctx)
 		if err != nil {
-			_ = level.Error(logger).Log("message", "invalid request")
+			logrus.Debug("Error flux -> ", err)
 			return domain.CustomerResponse{
 				Code:     http.StatusBadRequest,
 				Response: err.Error(),
 			}, nil
 		}
 
-		_ = level.Error(logger).Log("message", "ok")
+		logrus.WithFields(logrus.Fields{
+			"fluxo":    "ok",
+			"endpoint": "makeObterExemploEndpoint",
+		})
 
 		return domain.CustomerResponse{
 			Code:     http.StatusOK,
@@ -45,14 +48,17 @@ func makeInserirExemploEndpoint(s service.ServiceFactory, logger log.Logger) end
 		Exemplo := request.(domain.Exemplo)
 		err := s.Exemplo().AdicionarExemplo(ctx, Exemplo)
 		if err != nil {
-			_ = level.Error(logger).Log("message", "invalid request")
+			logrus.Debug("Error flux -> ", err)
 			return domain.CustomerResponse{
 				Code:     http.StatusBadRequest,
 				Response: err.Error(),
 			}, nil
 		}
 
-		_ = level.Error(logger).Log("message", "ok")
+		logrus.WithFields(logrus.Fields{
+			"fluxo":    "ok",
+			"endpoint": "makeInserirExemploEndpoint",
+		})
 
 		return domain.CustomerResponse{
 			Code: http.StatusOK,
