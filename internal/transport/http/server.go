@@ -40,3 +40,9 @@ func NewService(context context.Context, endpoint *endpoint.Endpoints, logger *l
 
 	return r
 }
+
+func (s *server) ResponseErrorMessage(c *gin.Context, code int, message string) {
+	c.AbortWithStatusJSON(code, struct {
+		Message string `json:"message"`
+	}{message})
+}
