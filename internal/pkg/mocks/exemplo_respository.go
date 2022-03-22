@@ -1,7 +1,7 @@
 package mocks
 
 import (
-	"github.com/logstay/project-church-service/internal/domain"
+	"github.com/logstay/project-chassi/internal/domain"
 	"github.com/stretchr/testify/mock"
 )
 

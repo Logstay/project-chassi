@@ -7,8 +7,8 @@ import (
 
 	"github.com/go-kit/kit/endpoint"
 	"github.com/go-kit/log"
-	"github.com/logstay/project-church-service/internal/domain"
-	"github.com/logstay/project-church-service/internal/service"
+	"github.com/logstay/project-chassi/internal/domain"
+	"github.com/logstay/project-chassi/internal/service"
 	"github.com/sirupsen/logrus"
 )
 

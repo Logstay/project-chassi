@@ -3,7 +3,7 @@ package endpoint
 import (
 	"github.com/go-kit/kit/endpoint"
 	"github.com/go-kit/log"
-	"github.com/logstay/project-church-service/internal/service"
+	"github.com/logstay/project-chassi/internal/service"
 )
 
 // Endpoints holds all Go kit endpoints for the Order service.

@@ -12,9 +12,9 @@ import (
 	"github.com/go-kit/log/level"
 	"github.com/jmoiron/sqlx"
 	_ "github.com/lib/pq"
-	"github.com/logstay/project-church-service/internal/endpoint"
-	"github.com/logstay/project-church-service/internal/service"
-	trans "github.com/logstay/project-church-service/internal/transport/http"
+	"github.com/logstay/project-chassi/internal/endpoint"
+	"github.com/logstay/project-chassi/internal/service"
+	trans "github.com/logstay/project-chassi/internal/transport/http"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/viper"
 )

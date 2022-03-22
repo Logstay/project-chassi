@@ -5,8 +5,8 @@ import (
 	"errors"
 	"testing"
 
-	"github.com/logstay/project-church-service/internal/domain"
-	"github.com/logstay/project-church-service/internal/pkg/mocks"
+	"github.com/logstay/project-chassi/internal/domain"
+	"github.com/logstay/project-chassi/internal/pkg/mocks"
 	"github.com/stretchr/testify/assert"
 	"gopkg.in/guregu/null.v4"
 )

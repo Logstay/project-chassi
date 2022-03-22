@@ -3,7 +3,7 @@ package service
 import (
 	"github.com/go-kit/log"
 	"github.com/jmoiron/sqlx"
-	Exemplo "github.com/logstay/project-church-service/internal/service/exemplo"
+	Exemplo "github.com/logstay/project-chassi/internal/service/exemplo"
 )
 
 type ServiceFactory interface {

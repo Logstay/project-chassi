@@ -4,7 +4,7 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	"github.com/logstay/project-church-service/internal/domain"
+	"github.com/logstay/project-chassi/internal/domain"
 	"github.com/sirupsen/logrus"
 )
 

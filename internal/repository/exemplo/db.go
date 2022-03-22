@@ -4,8 +4,8 @@ import (
 	"database/sql"
 
 	"github.com/jmoiron/sqlx"
-	"github.com/logstay/project-church-service/internal/domain"
-	rputils "github.com/logstay/project-church-service/internal/repository/rp_utils"
+	"github.com/logstay/project-chassi/internal/domain"
+	rputils "github.com/logstay/project-chassi/internal/repository/rp_utils"
 )
 
 type ExemploRepository interface {

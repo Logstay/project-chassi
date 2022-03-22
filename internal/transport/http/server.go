@@ -8,7 +8,7 @@ import (
 	"github.com/go-kit/log"
 	"github.com/sirupsen/logrus"
 
-	"github.com/logstay/project-church-service/internal/endpoint"
+	"github.com/logstay/project-chassi/internal/endpoint"
 )
 
 type server struct {

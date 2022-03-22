@@ -6,8 +6,8 @@ import (
 
 	"github.com/go-kit/log"
 	"github.com/jmoiron/sqlx"
-	"github.com/logstay/project-church-service/internal/domain"
-	ExemploRepository "github.com/logstay/project-church-service/internal/repository/exemplo"
+	"github.com/logstay/project-chassi/internal/domain"
+	ExemploRepository "github.com/logstay/project-chassi/internal/repository/exemplo"
 	"gopkg.in/guregu/null.v4"
 )
 
