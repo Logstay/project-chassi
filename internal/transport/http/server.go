@@ -29,7 +29,7 @@ func NewService(context context.Context, endpoint *endpoint.Endpoints, logger *l
 
 	r.GET("/health", rest.HealthCheckHandler)
 
-	Exemplo := r.Group("/exemplo")
+	Exemplo := r.Group("/v1/exemplo")
 	{
 		Exemplo.GET("", rest.obterExemplo)
 		Exemplo.POST("", rest.inserirExemplo)
