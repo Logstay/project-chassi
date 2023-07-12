@@ -1,4 +1,4 @@
-package transport
+package handler
 
 import (
 	"net/http"
@@ -8,7 +8,12 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-func (s *server) obterExemplo(c *gin.Context) {
+type handler struct {
+	endpoint *endpoint.Endpoints
+	logger   *log.Logger
+}
+
+func (s *handler) ObterExemplo(c *gin.Context) {
 
 	resp, err := s.endpoint.ObterExemploEndpoint(c, nil)
 	if err != nil {
@@ -19,7 +24,7 @@ func (s *server) obterExemplo(c *gin.Context) {
 	c.JSON(resp.(domain.CustomerResponse).Code, resp.(domain.CustomerResponse).Response)
 }
 
-func (s *server) inserirExemplo(c *gin.Context) {
+func (s *handler) InserirExemplo(c *gin.Context) {
 	var Exemplo domain.Exemplo
 
 	if err := c.ShouldBind(&Exemplo); err != nil {

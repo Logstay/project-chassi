@@ -51,7 +51,6 @@ func main() {
 
 	logrus.Info(banner)
 
-	// initialize our OpenCensus configuration and defer a clean-up
 	var logger log.Logger
 	{
 		logger = log.NewLogfmtLogger(os.Stderr)
@@ -69,8 +68,7 @@ func main() {
 	var db *sqlx.DB
 	{
 		var err error
-		// Connect to the "ordersdb" database
-		db, err = sqlx.Open(viper.GetString("db_type"), viper.GetString("db_config"))
+		db, err = sqlx.Open(viper.GetString("DB_TYPE"), viper.GetString("DB_HOST"))
 		if err != nil {
 			os.Exit(-1)
 		}

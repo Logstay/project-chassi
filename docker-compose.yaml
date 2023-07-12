@@ -1,0 +1,18 @@
+version: '3.7'
+
+services:
+  db:
+    image: "postgres:13"
+    container_name: db
+    ports:
+      - 5435:5432
+    environment:
+      POSTGRES_DB: example_chassi
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres00
+    volumes:
+      - storage_projchurch:/var/lib/postgresql/data
+
+volumes:
+  storage_projchurch:
+    external: false
